@@ -6,7 +6,7 @@
 # File      :test_login.py
 # Software  :PyCharm Community Edition
 import unittest
-from ddt import ddt, data
+from libext.ddt import ddt, data
 from pages import login_page
 from selenium import webdriver
 from datas import login
@@ -22,7 +22,6 @@ class TestLogin(unittest.TestCase):
     def setUpClass(cls):
         cls.driver = webdriver.Chrome()
         cls.login = login_page.LoginPage(cls.driver)
-
 
     def setUp(self):
         login_url = "http://120.79.176.157:8012/Index/login.html"
@@ -65,7 +64,6 @@ class TestLogin(unittest.TestCase):
             logger.error("实际结果与预期结果不匹配，message：{}".format(e))
             raise e
 
-    # @unittest.skip
     def test_login_correct(self):
         phone = login.user_correct["mobile"]
         pwd = login.user_correct["password"]
