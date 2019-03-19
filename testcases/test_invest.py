@@ -12,6 +12,7 @@ from pages.index_page import IndexPage
 from datas import invest
 from common.mylog import get_logger
 from libext.ddt import ddt, data
+from common.config import ReadConfig
 
 logger = get_logger("test_invest")
 incorrect_invest_button = invest.incorrect_invest_button
@@ -24,9 +25,13 @@ class TestInvest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome()
+        chrome_opt = webdriver.ChromeOptions()
+        value = ReadConfig().get_value("chrome_options", "chrome_options")
+        chrome_opt.add_argument(value)
+        cls.driver = webdriver.Chrome(chrome_options=chrome_opt)
         # 先登录
-        cls.driver.get("http://120.79.176.157:8012/Index/login.html")
+        url = ReadConfig().get_value("web", "url")
+        cls.driver.get(url)
         login_page = LoginPage(cls.driver)
         cls.index_page = IndexPage(cls.driver)
         login_page.submit_info("18684720553", "python")

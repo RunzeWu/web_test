@@ -6,7 +6,7 @@
 # File      :login_page.py
 # Software  :PyCharm Community Edition
 
-user_correct = {"mobile": "18684720553", "password": "python", "title": "正常登录"}
+user_correct = {"mobile": "18684720553", "password": "python", "expected": "小蜜蜂", "title": "正常登录"}
 
 user_incorrect = [
     {"mobile": "", "password": "", "expected": "请输入手机号", "title": "空账号密码"},
