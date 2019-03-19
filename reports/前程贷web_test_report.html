@@ -116,18 +116,18 @@ function html_escape(s) {
 <div class='heading'>
 <h1 style="font-family: Microsoft YaHei">前程贷web登录，投资测试报告</h1>
 <p class='attribute'><strong>测试人员 : </strong> 夜雨声烦</p>
-<p class='attribute'><strong>开始时间 : </strong> 2019-03-19 15:31:06</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:01:26.234004</p>
-<p class='attribute'><strong>测试结果 : </strong> 共 11，通过 11，通过率= 100.00%</p>
+    <p class='attribute'><strong>开始时间 : </strong> 2019-03-19 22:39:39</p>
+    <p class='attribute'><strong>合计耗时 : </strong> 0:01:26.166796</p>
+    <p class='attribute'><strong>测试结果 : </strong> 共 11，通过 9，错误 2，通过率= 81.82%</p>
 
 <p class='description'>测试了登录，投资</p>
 </div>
 
 
 <p id='show_detail_line'>
-<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
+    <a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 81.82% }</a>
 <a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
-<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 11 }</a>
+    <a class="btn btn-success" href='javascript:showCase(2)'>通过{ 9 }</a>
 <a class="btn btn-info" href='javascript:showCase(3)'>所有{ 11 }</a>
 </p>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
@@ -148,12 +148,12 @@ function html_escape(s) {
     <td>详细</td>
 </tr>
 
-<tr class='passClass warning'>
+    <tr class='errorClass warning'>
     <td>test_invest.TestInvest</td>
     <td class="text-center">5</td>
-    <td class="text-center">5</td>
+        <td class="text-center">3</td>
     <td class="text-center">0</td>
-    <td class="text-center">0</td>
+        <td class="text-center">2</td>
     <td class="text-center"><a href="javascript:showClassDetail('c1',5)" class="detail" id='c1'>详细</a></td>
 </tr>
 
@@ -162,14 +162,60 @@ function html_escape(s) {
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_2' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_incorrect_invest_button_1_投不能被10整除的正数: dict() -> new empty dictionary</div></td>
-    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <tr id='ft1_2' class='none'>
+        <td class='errorCase'>
+            <div class='testcase'>test_incorrect_invest_button_1_投不能被10整除的正数: dict() -> new empty dictionary</div>
+        </td>
+        <td colspan='5' align='center'>
+            <!--默认收起错误信息 -Findyou
+            <button id='btn_ft1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_2'>错误</button>
+            <div id='div_ft1_2' class="collapse">  -->
+            <!-- 默认展开错误信息 -Findyou -->
+            <button id='btn_ft1_2' type="button" class="btn btn-danger btn-xs" data-toggle="collapse"
+                    data-target='#div_ft1_2'>错误
+            </button>
+            <div id='div_ft1_2' class="collapse in" align="left">
+    <pre>
+    
+ft1_2: Traceback (most recent call last):
+  File "D:\PYworkspace\web_test\libext\ddt.py", line 154, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\PYworkspace\web_test\testcases\test_invest.py", line 77, in test_incorrect_invest_button
+    self.assertFalse(self.bid_page.get_loan_button_ele().is_enabled())
+TypeError: 'WebElement' object is not callable
+
+
+    </pre>
+            </div>
+        </td>
 </tr>
 
-<tr id='pt1_3' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_incorrect_invest_button_2_投字符: dict() -> new empty dictionary</div></td>
-    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <tr id='ft1_3' class='none'>
+        <td class='errorCase'>
+            <div class='testcase'>test_incorrect_invest_button_2_投字符: dict() -> new empty dictionary</div>
+        </td>
+        <td colspan='5' align='center'>
+            <!--默认收起错误信息 -Findyou
+            <button id='btn_ft1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_3'>错误</button>
+            <div id='div_ft1_3' class="collapse">  -->
+            <!-- 默认展开错误信息 -Findyou -->
+            <button id='btn_ft1_3' type="button" class="btn btn-danger btn-xs" data-toggle="collapse"
+                    data-target='#div_ft1_3'>错误
+            </button>
+            <div id='div_ft1_3' class="collapse in" align="left">
+    <pre>
+    
+ft1_3: Traceback (most recent call last):
+  File "D:\PYworkspace\web_test\libext\ddt.py", line 154, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\PYworkspace\web_test\testcases\test_invest.py", line 77, in test_incorrect_invest_button
+    self.assertFalse(self.bid_page.get_loan_button_ele().is_enabled())
+TypeError: 'WebElement' object is not callable
+
+
+    </pre>
+            </div>
+        </td>
 </tr>
 
 <tr id='pt1_4' class='hiddenRow'>
@@ -224,10 +270,10 @@ function html_escape(s) {
 <tr id='total_row' class="text-center active">
     <td>总计</td>
     <td>11</td>
-    <td>11</td>
+    <td>9</td>
     <td>0</td>
-    <td>0</td>
-    <td>通过率：100.00%</td>
+    <td>2</td>
+    <td>通过率：81.82%</td>
 </tr>
 </table>
 

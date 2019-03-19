@@ -5,32 +5,30 @@
 # E-mail    :wurz529@foxmail.com
 # File      :login_page.py
 # Software  :PyCharm Community Edition
-from selenium.webdriver.remote.webelement import WebElement
 
 from pages.base import BasePage
-from selenium.webdriver.common.by import By
 from selenium import webdriver
+from pages.locators.login_locator import LoginLocators as ll
 
 
 class LoginPage(BasePage):
-
-    user_locator = (By.XPATH,"//input[@name='phone']")
-    pwd_locator = (By.XPATH,"//input[@name='password']")
-
-    error_locator = (By.XPATH,"//div[@class='form-error-info']")
-    toast_info_locator = (By.XPATH, "//div[@class='layui-layer-content']")
+    # user_locator = (By.XPATH,"//input[@name='phone']")
+    # pwd_locator = (By.XPATH,"//input[@name='password']")
+    #
+    # error_locator = (By.XPATH,"//div[@class='form-error-info']")
+    # toast_info_locator = (By.XPATH, "//div[@class='layui-layer-content']")
 
     def get_user_ele(self):
-        return self.get_visible_element(self.user_locator)
+        return self.get_visible_element(ll.user_locator)
 
     def get_pwd_ele(self):
-        return self.get_visible_element(self.pwd_locator)
+        return self.get_visible_element(ll.pwd_locator)
 
     def alert_info(self):
-        return self.get_visible_element(self.error_locator).text
+        return self.get_visible_element(ll.error_locator).text
 
     def toast_info(self):
-        return self.get_visible_element(self.toast_info_locator).text
+        return self.get_visible_element(ll.toast_info_locator).text
 
     def submit_info(self,mobile,pwd):
         self.user_sendkey(mobile)

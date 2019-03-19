@@ -9,6 +9,7 @@ import unittest
 from selenium import webdriver
 from pages.login_page import LoginPage
 from pages.index_page import IndexPage
+from pages.bid_page import BidPage
 from datas import invest
 from common.mylog import get_logger
 from libext.ddt import ddt, data
@@ -33,6 +34,7 @@ class TestInvest(unittest.TestCase):
         url = ReadConfig().get_value("web", "url")
         cls.driver.get(url)
         login_page = LoginPage(cls.driver)
+        cls.bid_page = BidPage(cls.driver)
         cls.index_page = IndexPage(cls.driver)
         login_page.submit_info("18684720553", "python")
         cls.index_page.click_loan()
@@ -42,7 +44,7 @@ class TestInvest(unittest.TestCase):
         pass
 
     def tearDown(self):
-        self.index_page.loan_input_clear()
+        self.bid_page.loan_input_clear()
 
     @classmethod
     def tearDownClass(cls):
@@ -54,29 +56,41 @@ class TestInvest(unittest.TestCase):
         amount = value["amount"]
         expected = value["expected"]
         logger.info("数据读取成功，充值金额：{0}，期望结果：{1}".format(amount, expected))
-        self.index_page.invest(amount)
+        before_money = float(self.bid_page.get_invest_money())
+        self.bid_page.invest(amount)
 
-        actual = self.index_page.get_success_toast_text()
+        actual = self.bid_page.get_success_toast_text()
         logger.info("实际结果：{}".format(actual))
-        self.index_page.click_close_pop()
+        self.bid_page.click_close_pop()
         try:
             self.assertEqual(expected, actual)
         except AssertionError as e:
             logger.error("expected is not same as actual. error:{}".format(e))
             raise e
 
+        self.driver.refresh()
+        after_money = float(self.bid_page.get_invest_money())
+
+        try:
+            self.assertEqual(before_money - float(amount), after_money)
+        except AssertionError as e:
+            logger.error("money is not correct. error:{}".format(e))
+            raise e
+
+
+
     @data(*incorrect_invest_button)
     def test_incorrect_invest_button(self, value):
         amount = value["amount"]
         expected = value["expected"]
         logger.info("数据读取成功，充值金额：{0}，期望结果：{1}".format(amount, expected))
-        self.index_page.loan_input_sendkeys(amount)
+        self.bid_page.loan_input_sendkeys(amount)
         try:
-            self.assertFalse(self.index_page.get_loan_button_ele().is_enabled())
+            self.assertFalse(self.bid_page.get_loan_button_ele.is_enabled())
         except AssertionError as e:
             logger.error("button应该不了点击")
             raise e
-        actual = self.index_page.get_button_text()
+        actual = self.bid_page.get_button_text()
         logger.info("实际结果：{}".format(actual))
 
         try:
@@ -90,14 +104,15 @@ class TestInvest(unittest.TestCase):
     def test_incorrect_invest_toast(self, value):
         amount = value["amount"]
         expected = value["expected"]
-        self.index_page.invest(amount)
+        self.bid_page.invest(amount)
         logger.info("数据读取成功，充值金额：{0}，期望结果：{1}".format(amount, expected))
 
-        actual = self.index_page.get_toast_text()
+        actual = self.bid_page.get_toast_text()
         logger.info("实际结果：{}".format(actual))
-        self.index_page.click_toast_button()
+        self.bid_page.click_toast_button()
         try:
             self.assertEqual(expected, actual)
+            logger.info('断言成功')
         except AssertionError as e:
             logger.error("expected is not same as actual. error:{}".format(e))
             raise e
