@@ -1,4 +1,4 @@
-#！/usr/bin/python3
+# ！/usr/bin/python3
 # -*- coding: utf-8 -*-
 # @Time     :2019/3/16 16:52
 # @Author   :Yosef-夜雨声烦
@@ -7,16 +7,10 @@
 # Software  :PyCharm Community Edition
 
 from pages.base import BasePage
-from selenium import webdriver
 from pages.locators.login_locator import LoginLocators as ll
 
 
 class LoginPage(BasePage):
-    # user_locator = (By.XPATH,"//input[@name='phone']")
-    # pwd_locator = (By.XPATH,"//input[@name='password']")
-    #
-    # error_locator = (By.XPATH,"//div[@class='form-error-info']")
-    # toast_info_locator = (By.XPATH, "//div[@class='layui-layer-content']")
 
     def get_user_ele(self):
         return self.get_visible_element(ll.user_locator)
@@ -30,7 +24,7 @@ class LoginPage(BasePage):
     def toast_info(self):
         return self.get_visible_element(ll.toast_info_locator).text
 
-    def submit_info(self,mobile,pwd):
+    def submit_info(self, mobile, pwd):
         self.user_sendkey(mobile)
         self.pwd_sendkey(pwd)
         self.get_user_ele().submit()
@@ -41,7 +35,7 @@ class LoginPage(BasePage):
     def clear_pwd(self):
         return self.get_pwd_ele().clear()
 
-    def user_sendkey(self,value):
+    def user_sendkey(self, value):
         self.clear_mobile()
         return self.get_user_ele().send_keys(value)
 
@@ -54,12 +48,3 @@ class LoginPage(BasePage):
 
     def click_pwd(self):
         return self.get_pwd_ele().click()
-
-if __name__ == '__main__':
-    driver = webdriver.Chrome()
-
-    loginpage = LoginPage(driver)
-    url = loginpage.login_url
-    driver.get(url)
-    loginpage.submit_info("18684720553","python")
-    # print(loginpage.get_user_ele().__annotations__)

@@ -287,6 +287,12 @@ class BasePage:
             self.get_windows_img()
 
     def switch_window(self, name=None, fqc=20):
+        """
+        切换窗口，有name切换至该name的窗口，没有则切换最新
+        :param name:
+        :param fqc:
+        :return:
+        """
         if name is None:
             current_handle = self.driver.current_window_handle
             WebDriverWait(self.driver, fqc).until(EC.new_window_is_opened(current_handle))
