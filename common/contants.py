@@ -31,3 +31,7 @@ testcases_dir = os.path.join(base_dir, "testcases")
 reports_dir = os.path.join(base_dir, 'reports')  # reports文件夹路径
 reports_html = os.path.join(reports_dir, '前程贷web_test_report.html')  # reports文件夹路径
 
+screenshot_dir = os.path.join(base_dir, "Screenshots")
+file_name = time.strftime('%Y%m%d%H%M%S')
+screenshot_img = os.path.join(screenshot_dir, file_name + ".png'")
+
