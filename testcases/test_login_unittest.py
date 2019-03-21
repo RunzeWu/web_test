@@ -3,7 +3,7 @@
 # @Time     :2019/3/16 18:18
 # @Author   :Yosef-夜雨声烦
 # E-mail    :wurz529@foxmail.com
-# File      :test_login.py
+# File      :test_login_unittest.py
 # Software  :PyCharm Community Edition
 import unittest
 from common.config import ReadConfig
