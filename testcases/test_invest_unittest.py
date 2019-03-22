@@ -29,7 +29,7 @@ class TestInvest(unittest.TestCase):
         chrome_opt = webdriver.ChromeOptions()
         value = ReadConfig().get_value("chrome_options", "chrome_options")
         chrome_opt.add_argument(value)
-        cls.driver = webdriver.Chrome(chrome_options=chrome_opt)
+        cls.driver = webdriver.Chrome()
         # 先登录
         url = ReadConfig().get_value("web", "url")
         cls.driver.get(url)

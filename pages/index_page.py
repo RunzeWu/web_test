@@ -5,13 +5,14 @@
 # E-mail    :wurz529@foxmail.com
 # File      :index_page.py
 # Software  :PyCharm Community Edition
-from selenium.webdriver.common.by import By
+
 from pages.base import BasePage
 from pages.locators.index_locator import IndexLocator as il
 
 
 class IndexPage(BasePage):
 
+    @property
     def get_user_info(self):
         return self.get_visible_element(il.user_locator).text
 

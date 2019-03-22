@@ -18,9 +18,11 @@ class LoginPage(BasePage):
     def get_pwd_ele(self):
         return self.get_visible_element(ll.pwd_locator)
 
+    @property
     def alert_info(self):
         return self.get_visible_element(ll.error_locator).text
 
+    @property
     def toast_info(self):
         return self.get_visible_element(ll.toast_info_locator).text
 

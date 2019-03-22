@@ -52,7 +52,7 @@ class TestLogin(unittest.TestCase):
         self.login.submit_info(phone, pwd)
 
         try:
-            self.assertEqual(expected, self.login.alert_info())
+            self.assertEqual(expected, self.login.alert_info)
         except AssertionError as e:
             logger.error("实际结果与预期结果不匹配，message：{}".format(e))
             raise e
@@ -66,7 +66,7 @@ class TestLogin(unittest.TestCase):
         self.login.submit_info(phone, pwd)
 
         try:
-            self.assertEqual(expected, self.login.toast_info())
+            self.assertEqual(expected, self.login.toast_info)
         except AssertionError as e:
             logger.error("实际结果与预期结果不匹配，message：{}".format(e))
             raise e
