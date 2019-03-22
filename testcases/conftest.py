@@ -41,12 +41,21 @@ def bid_class_env():
     # 先登录
     url = ReadConfig().get_value("web", "url")
     driver.get(url)
+    global bid_page
     login_page = LoginPage(driver)
     bid_page = BidPage(driver)
     index_page = IndexPage(driver)
     login_page.submit_info("18684720553", "python")
     index_page.click_loan()
 
-    yield bid_page,driver
+    yield bid_page, driver
 
     driver.quit()
+
+
+@pytest.fixture()
+def bid_env():
+    pass
+    yield
+    global bid_page
+    bid_page.loan_input_clear()

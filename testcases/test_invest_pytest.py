@@ -12,10 +12,11 @@ from common.mylog import get_logger
 logger = get_logger("test_invest")
 
 
+@pytest.mark.usefixtures("bid_class_env")
+@pytest.mark.usefixtures("bid_env")
 class TestInvest:
 
     @pytest.mark.invest
-    @pytest.mark.usefixtures("bid_class_env")
     def test_correct_invest(self, bid_class_env):
         bid_page,driver = bid_class_env
         value = invest.correct_invest
@@ -38,7 +39,7 @@ class TestInvest:
         driver.refresh()
         after_money = float(bid_page.get_invest_money())
 
-        bid_page.loan_input_clear()
+        # bid_page.loan_input_clear()
 
         try:
             assert before_money - float(amount) == after_money
@@ -63,7 +64,7 @@ class TestInvest:
         actual = bid_page.get_button_text()
         logger.info("实际结果：{}".format(actual))
 
-        bid_page.loan_input_clear()
+        # bid_page.loan_input_clear()
 
         try:
             # self.assertEqual(expected, actual)
@@ -85,7 +86,7 @@ class TestInvest:
         logger.info("实际结果：{}".format(actual))
         bid_page.click_toast_button()
 
-        bid_page.loan_input_clear()
+        # bid_page.loan_input_clear()
 
         try:
             # assertEqual(expected, actual)
@@ -97,4 +98,5 @@ class TestInvest:
 
 
 if __name__ == '__main__':
-    pytest.main(["-m invest"])
+    pytest.main(["-m invest",
+                 "--html=1.html"])
