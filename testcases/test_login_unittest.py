@@ -25,7 +25,7 @@ class TestLogin(unittest.TestCase):
         chrome_opt = webdriver.ChromeOptions()
         value = ReadConfig().get_value("chrome_options", "chrome_options")
         chrome_opt.add_argument(value)
-        cls.driver = webdriver.Chrome(chrome_options=chrome_opt)
+        cls.driver = webdriver.Chrome(chrome_options=None)
         cls.login = login_page.LoginPage(cls.driver)
 
     def setUp(self):
@@ -77,7 +77,7 @@ class TestLogin(unittest.TestCase):
         expected = login.user_correct["expected"]
 
         self.login.submit_info(phone, pwd)
-        actual = index_page.IndexPage(self.driver).get_user_info()
+        actual = index_page.IndexPage(self.driver).get_user_info
         self.driver.delete_all_cookies()
         try:
             self.assertIn(expected, actual)
