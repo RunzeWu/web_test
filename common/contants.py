@@ -35,3 +35,4 @@ screenshot_dir = os.path.join(base_dir, "Screenshots")
 file_name = time.strftime('%Y%m%d%H%M%S')
 screenshot_img = os.path.join(screenshot_dir, file_name + ".png'")
 
+allure_dir = os.path.join(base_dir, "allure")
