@@ -8,4 +8,5 @@
 import pytest
 
 if __name__ == '__main__':
-    pytest.main(["--alluredir=allure"])
+    pytest.main(["-m pytest",
+                 "--alluredir=allure"])
