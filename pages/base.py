@@ -5,7 +5,9 @@
 # E-mail    :wurz529@foxmail.com
 # File      :base.py
 # Software  :PyCharm Community Edition
-
+import win32gui
+import win32con
+import time
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import Chrome, ActionChains
 from selenium.webdriver.remote.webelement import WebElement
@@ -299,3 +301,23 @@ class BasePage:
             handles = self.driver.window_handles
             return self.driver.switch_to.window(handles[-1])
         return self.driver.switch_to.window()
+
+    def upload_chrome(filepath):
+        """
+        上传文件
+        :return:
+        """
+        # 一级窗口
+        dialog = win32gui.FindWindow("#32770", "打开")
+        # 二级窗口
+        ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, "ComboBoxEx32", None)
+        # 三级窗口
+        comboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, "ComboBox", None)
+        # 四级窗口
+        edit = win32gui.FindWindowEx(comboBox, 0, "edit", None)
+        # 二级窗口
+        button = win32gui.FindWindowEx(dialog, 0, "Button", "打开(&0)")
+        # 操作 发送文件路径
+        win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, filepath)
+        # 点击打开按钮
+        win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
