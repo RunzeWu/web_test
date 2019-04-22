@@ -302,7 +302,7 @@ class BasePage:
             return self.driver.switch_to.window(handles[-1])
         return self.driver.switch_to.window()
 
-    def upload_chrome(filepath):
+    def upload_chrome(self,filepath):
         """
         上传文件
         :return:
